@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import { UserModel } from '../models/user.model';
+import { IUser } from '../types/user.types';
 
 export const hashPassword = async (password: string): Promise<string> => {
   const saltRounds = 10;
@@ -15,7 +16,7 @@ export const comparePassword = async (
 };
 
 export const changedPasswordAfter = async (
-  userId: string,
+  userId: IUser,
   JWTTimestamp: number,
 ): Promise<boolean> => {
   const user = await UserModel.findById(userId).select('+passwordChangedAt');
