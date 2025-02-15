@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import mongoose from 'mongoose';
+import { globalErrorHandler } from './middleware/errorHandler';
 
 dotenv.config();
 const app: Express = express();
@@ -48,7 +49,8 @@ app.get('*', (req: Request, res: Response, next: NextFunction) => {
   // next();
 });
 
-
+//global error-handling middleware
+app.use(globalErrorHandler);
 
 mongoose
   .connect(DB)
