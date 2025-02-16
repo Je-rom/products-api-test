@@ -7,13 +7,13 @@ const userSchema = new Schema<IUser>(
     first_name: {
       type: String,
       required: [true, 'Please input your first name'],
-      minlength: [5, 'Name cannot be less than 5 characters'],
+      minlength: [3, 'Name cannot be less than 3 characters'],
       maxlength: [50, 'Name cannot be more than 50 characters'],
     },
     second_name: {
       type: String,
       required: [true, 'Please input your second name'],
-      minlength: [5, 'Name cannot be less than 5 characters'],
+      minlength: [3, 'Name cannot be less than 3 characters'],
       maxlength: [50, 'Name cannot be more than 50 characters'],
     },
     email: {
@@ -32,7 +32,7 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: [true, 'Please input your password'],
       minlength: [8, 'Password must be at least 8 characters'],
-      select: false,
+      select: true,
     },
     passwordChangedAt: { type: Date },
     passwordResetToken: String,

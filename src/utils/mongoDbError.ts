@@ -21,13 +21,3 @@ export const handleValidationErrorDb = (err: any): AppError => {
   const message = `Invalid input data. ${errors.join('. ')}`;
   return new AppError(message, 400);
 };
-
-// //jwt Errors
-// export const handleTokenError = (): AppError => {
-//   return new AppError('Invalid token, please try again', 401);
-// };
-
-// //expired JWT Token
-// export const handleExpiredTokenError = (): AppError => {
-//   return new AppError('Token has expired, please try again', 401);
-// };

@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import mongoose from 'mongoose';
 import { globalErrorHandler } from './middleware/errorHandler';
-
+import { authRouter } from './routes/auth.router';
 dotenv.config();
 const app: Express = express();
 
@@ -25,10 +25,13 @@ const limiter = rateLimit({
   message:
     'Too many requests from this IP address, please try again in 15 minutes',
 });
-app.use('/api', limiter);
+app.use('/api/v1', limiter);
 
 //data sanitization against noSql query injection
 app.use(mongoSanitize());
+
+//api routes
+app.use('/api/v1/auth', authRouter);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   req.requestTime = new Date().toISOString();
