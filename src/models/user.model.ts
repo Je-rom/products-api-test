@@ -35,8 +35,8 @@ const userSchema = new Schema<IUser>(
       select: true,
     },
     passwordChangedAt: { type: Date },
-    passwordResetToken: String,
-    passwordResetExpires: Date,
+    passwordResetToken: { type: String, default: null },
+    passwordResetExpires: { type: Date, default: null },
     active: {
       type: Boolean,
       default: true,

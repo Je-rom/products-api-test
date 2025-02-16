@@ -11,8 +11,8 @@ export interface IUser {
   role: UserRole;
   password: string;
   passwordChangedAt?: Date;
-  passwordResetToken?: string;
-  passwordResetExpires?: Date;
+  passwordResetToken?: string | null;
+  passwordResetExpires?: Date | null;
   active: boolean;
   correctPassword(candidatePassword: string): Promise<boolean>;
   createdAt: Date;
