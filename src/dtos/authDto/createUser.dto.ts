@@ -5,7 +5,7 @@ import {
   IsOptional,
   MinLength,
 } from 'class-validator';
-import { UserRole } from '../types/user.types';
+import { UserRole } from '../../types/user.types';
 
 export class CreateUserDto {
   @IsNotEmpty({ message: 'First name is required' })

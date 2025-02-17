@@ -25,14 +25,11 @@ export const JwtAuthGuard = async (
   }
 
   try {
-    //verify token
     const verifyToken = jwt.verify(token, secret) as JwtPayload;
 
-    const userWithToken = await UserModel.findOne({ id: verifyToken.id });
+    const userWithToken = await UserModel.findById(verifyToken._id);
     if (!userWithToken) {
-      return next(
-        new AppError('The user belonging to this token, no longer exists', 401),
-      );
+      return next(new AppError('User not found', 401));
     }
     if (!verifyToken.iat) {
       return next(
@@ -50,7 +47,6 @@ export const JwtAuthGuard = async (
     }
 
     req.user = userWithToken;
-    console.log('user object:', userWithToken);
     next();
   } catch (error) {
     return next(new AppError('Invalid token. Please log in again', 401));

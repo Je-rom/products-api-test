@@ -7,10 +7,10 @@ import {
 } from '../utils/password';
 import crypto from 'crypto';
 import { AppError } from '../utils/appError';
-import { CreateUserDto } from '../dtos/createUser.dto';
-import { LoginUserDto } from '../dtos/loginUser.dto';
-import { ForgotPasswordDto } from '../dtos/forgotPassword.dto';
-import { ResetPasswordDto } from '../dtos/resetPassword.dto';
+import { CreateUserDto } from '../dtos/authDto/createUser.dto';
+import { LoginUserDto } from '../dtos/authDto/loginUser.dto';
+import { ForgotPasswordDto } from '../dtos/authDto/forgotPassword.dto';
+import { ResetPasswordDto } from '../dtos/authDto/resetPassword.dto';
 import { emailService } from '../service/email.service';
 
 export class AuthService {

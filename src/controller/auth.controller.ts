@@ -3,10 +3,10 @@ import { createToken } from '../utils/auth';
 import { AuthService } from '../service/auth.service';
 import { plainToInstance } from 'class-transformer';
 import { validateEntity } from '../utils/validation';
-import { ResetPasswordDto } from '../dtos/resetPassword.dto';
-import { LoginUserDto } from '../dtos/loginUser.dto';
-import { CreateUserDto } from '../dtos/createUser.dto';
-import { ForgotPasswordDto } from '../dtos/forgotPassword.dto';
+import { ResetPasswordDto } from '../dtos/authDto/resetPassword.dto';
+import { LoginUserDto } from '../dtos/authDto/loginUser.dto';
+import { CreateUserDto } from '../dtos/authDto/createUser.dto';
+import { ForgotPasswordDto } from '../dtos/authDto/forgotPassword.dto';
 
 class AuthController {
   public signUp = async (
@@ -77,6 +77,7 @@ class AuthController {
       await validateEntity(resetPasswordDto);
       await AuthService.resetPassword(req, resetPasswordDto);
       res.status(200).json({
+        status: 'success',
         message:
           'Your password has been reset successfully. Please log in again.',
       });

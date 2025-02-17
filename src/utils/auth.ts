@@ -17,7 +17,7 @@ const cookieExpiresInDays = parseInt(
 );
 
 const signToken = (id: string) => {
-  return jwt.sign({ id }, secret, {
+  return jwt.sign({ _id: id }, secret, {
     expiresIn: expiresIn as jwt.SignOptions['expiresIn'],
   });
 };

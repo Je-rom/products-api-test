@@ -7,6 +7,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import mongoose from 'mongoose';
 import { globalErrorHandler } from './middleware/errorHandler';
 import { authRouter } from './routes/auth.router';
+import { storeRouter } from './routes/store.router';
 dotenv.config();
 const app: Express = express();
 
@@ -32,6 +33,7 @@ app.use(mongoSanitize());
 
 //api routes
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/store', storeRouter);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   req.requestTime = new Date().toISOString();
