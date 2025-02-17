@@ -8,6 +8,8 @@ import mongoose from 'mongoose';
 import { globalErrorHandler } from './middleware/errorHandler';
 import { authRouter } from './routes/auth.router';
 import { storeRouter } from './routes/store.router';
+import { productRouter } from './routes/product.router';
+import { AppError } from './utils/appError';
 dotenv.config();
 const app: Express = express();
 
@@ -34,6 +36,7 @@ app.use(mongoSanitize());
 //api routes
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/store', storeRouter);
+app.use('/api/v1/product', productRouter);
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   req.requestTime = new Date().toISOString();
@@ -48,10 +51,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('*', (req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({
-    message: `no route found ${req.originalUrl}`,
-  });
-  // next();
+  next(new AppError(`Cannot find ${req.originalUrl} on this server`, 404));
 });
 
 //global error-handling middleware

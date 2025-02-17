@@ -57,7 +57,6 @@ export const RoleGuard = (requiredRoles: UserRole[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userRole = req.user?.role;
-      console.log('role:', userRole);
       if (!userRole || !requiredRoles.includes(userRole)) {
         throw new AppError(
           'You do not have the required permissions to access this resource.',

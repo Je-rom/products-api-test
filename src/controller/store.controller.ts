@@ -17,7 +17,7 @@ class StoreController {
       await validateEntity(storeData);
 
       const ownerId = req.user._id;
-      console.log(ownerId, "real owner")
+      console.log(ownerId, 'real owner');
 
       const newStore = await StoreService.createStore(storeData, ownerId);
 
@@ -70,10 +70,10 @@ class StoreController {
         throw new AppError('Store ID is required', 400);
       }
       const ownerId = req.user._id;
-      await StoreService.deleteStore(id, ownerId);
-      res.status(204).json({
+      const store = await StoreService.deleteStore(id, ownerId);
+      res.status(200).json({
         success: true,
-        message: 'Store deleted successfully',
+        message: store.message
       });
     } catch (error) {
       next(error);
