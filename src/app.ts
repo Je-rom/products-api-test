@@ -11,7 +11,7 @@ import { storeRouter } from './routes/store.router';
 import { productRouter } from './routes/product.router';
 import { AppError } from './utils/appError';
 dotenv.config();
-const app: Express = express();
+export const app: Express = express();
 
 const DB = process.env.CONNECTION_STRING || '';
 
